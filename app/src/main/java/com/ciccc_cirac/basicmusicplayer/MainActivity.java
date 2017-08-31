@@ -1,3 +1,13 @@
+
+// Update Music Player App Created In Class
+// •	Change button images to nine patch images.
+// •	Can you modify the source code so that it can play any audio files on the SD card of the device? (optional)
+// An Audio Player Running In The Background
+// •	In practice, users often expect the audio player to keep on playing even if the main layout is minimized. This can be implemented by running a background service on the device. 
+// •	Modify the source code. We do not need extra data files or strings. When clicking on the buttons, the main thread of application will not do any real operation; instead, it will pass intents to the background service to trigger related actions. 
+// •	Use Service for background music paly
+
+
 package com.ciccc_cirac.basicmusicplayer;
 
 import android.media.MediaPlayer;
