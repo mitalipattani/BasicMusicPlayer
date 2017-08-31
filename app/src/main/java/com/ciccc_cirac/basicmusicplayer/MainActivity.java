@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     // Handler to update UI timer, progress bar etc,.
     private Handler mHandler = new Handler();//added code for seek bar
     private Utilities utils;//added code for seek bar
+    private boolean playerReset = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +97,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Toast.makeText(this, R.string.reset, Toast.LENGTH_SHORT).show();
 // Release media instance to system
                     player.release();
+                    playerReset = true;
                     play_reset = true;
                     break;
                 }
@@ -153,7 +155,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         int totalDuration = player.getDuration();
         int currentPosition = utils.progressToTimer(seekBar.getProgress(), totalDuration);
 
-        // forward or backward to certain seconds
         player.seekTo(currentPosition);
 
         // update timer progress again
@@ -168,21 +169,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * */
     private Runnable mUpdateTimeTask = new Runnable() {
         public void run() {
-            long totalDuration = player.getDuration();
-            long currentDuration = player.getCurrentPosition();
+            if(!playerReset) {
+                long totalDuration = player.getDuration();
+                long currentDuration = player.getCurrentPosition();
 
-            // Displaying Total Duration time
-            txt_totalDuration.setText(""+utils.milliSecondsToTimer(totalDuration));
-            // Displaying time completed playing
-            songCurrentDurationLabel.setText(""+utils.milliSecondsToTimer(currentDuration));
+                // Displaying Total Duration time
+                txt_totalDuration.setText("" + utils.milliSecondsToTimer(totalDuration));
+                // Displaying time completed playing
+                songCurrentDurationLabel.setText("" + utils.milliSecondsToTimer(currentDuration));
 
-            // Updating progress bar
-            int progress = (int)(utils.getProgressPercentage(currentDuration, totalDuration));
-            //Log.d("Progress", ""+progress);
-            songProgressBar.setProgress(progress);
+                // Updating progress bar
+                int progress = (int) (utils.getProgressPercentage(currentDuration, totalDuration));
+                //Log.d("Progress", ""+progress);
+                songProgressBar.setProgress(progress);
 
-            // Running this thread after 100 milliseconds
-            mHandler.postDelayed(this, 100);
+                // Running this thread after 100 milliseconds
+                mHandler.postDelayed(this, 100);
+            }
+            else
+            {
+                txt_totalDuration.setText("0:00");
+                songCurrentDurationLabel.setText("0:00");
+            }
         }
     };
 }
