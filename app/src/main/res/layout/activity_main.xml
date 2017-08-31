@@ -58,16 +58,21 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Small Text"
+            android:text=""
             android:gravity="start"
-            android:id="@+id/textView2"/>
+            android:id="@+id/songCurrentDurationLabel"/>
         <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
+            android:id="@+id/songTitle"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Medium Text"
-            android:id="@+id/textView4" />
+            android:layout_weight="1"
+            android:textColor="#04b3d2"
+            android:textSize="16dp"
+            android:paddingLeft="10dp"
+            android:textStyle="bold"
+            android:text="Shape of You"
+            android:gravity="center"
+           />
 
         <TextView
             android:layout_width="0dp"
@@ -75,9 +80,8 @@
             android:layout_height="wrap_content"
             android:gravity="end"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Small Text"
-            android:id="@+id/textView3" />
-
+            android:text=""
+            android:id="@+id/totalDuration" />
 
         </LinearLayout>
 </LinearLayout>
